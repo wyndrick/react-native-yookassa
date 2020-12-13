@@ -31,7 +31,7 @@ declare module "react-native-yookassa"{
         status: "RESULT_OK"|"RESULT_CANCELED"|"RESULT_ERROR";
     }
     export default class Yookassa extends React.Component<YookassaProps> {
-        static init:(shopId:string, token:string, clientId:string)=>any;
+        static initialize:(shopId:string, token:string, clientId:string)=>any;
         static tokenization:(
             title:string, 
             desc:string, 

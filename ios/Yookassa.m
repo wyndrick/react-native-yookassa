@@ -1,13 +1,25 @@
-#import "Yookassa.h"
+#import "React/RCTBridgeModule.h"
+#import "React/RCTUtils.h"
 
-@implementation Yookassa
+@interface RCT_EXTERN_MODULE(Yookassa, UIViewController)
 
-RCT_EXPORT_MODULE()
+RCT_EXTERN_METHOD(initialize:
+                  (NSString)shopId
+                  shopToken: (NSString)shopToken
+                  clienId: (NSString)clienId
+                  
+)
+    
+RCT_EXTERN_METHOD(tokenization:
+                  (NSString)title
+                  withDesc: (NSString)desc
+                  withSumm: (nonnull NSNumber)amount
+                  withPaymentType: (NSString)paymentType
+                  withSavePaymentMethods: (NSString)savePaymentMethods
+                  withTestParameters: (nullable NSDictionary)testParameters
+                  withCallback: (RCTResponseSenderBlock)callback
+)
 
-RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
-{
-    // TODO: Implement some actually useful functionality
-    callback(@[[NSString stringWithFormat: @"numberArgument: %@ stringArgument: %@", numberArgument, stringArgument]]);
-}
 
+RCT_EXTERN_METHOD(finish)
 @end

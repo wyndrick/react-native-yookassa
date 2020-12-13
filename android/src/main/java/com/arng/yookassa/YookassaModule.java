@@ -54,7 +54,7 @@ public class YookassaModule extends ReactContextBaseJavaModule implements Activi
     Callback callback;
 
     @ReactMethod
-    public void init(String SHOP_ID, String SHOP_TOKEN, @Nullable String CLIENT_ID) {
+    public void initialize(String SHOP_ID, String SHOP_TOKEN, @Nullable String CLIENT_ID) {
         this.SHOP_ID = SHOP_ID;
         this.SHOP_TOKEN = SHOP_TOKEN;
         this.CLIENT_ID = CLIENT_ID;

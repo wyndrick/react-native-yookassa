@@ -28,8 +28,8 @@ const ResultStatus = Object.freeze({
 class Yookassa {
   static paymentTypes = PaymentType
   static savePaymentMethods = SavePaymentMethod
-  static init = (shopId, token, clientId = null) => {
-    YookassaNative.init(shopId, token, clientId);
+  static initialize = (shopId, token, clientId = null) => {
+    YookassaNative.initialize(shopId, token, clientId);
   }
   static tokenization = (title, desc, summ, paymentType, savePaymentMethod, testParameters) => {
     console.log("YOOKASSA tokenization start = ")
