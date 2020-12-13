@@ -119,7 +119,7 @@ public class YookassaModule extends ReactContextBaseJavaModule implements Activi
             CLIENT_ID
         );
 
-        TestParameters tParameters = null;
+        TestParameters tParameters = new TestParameters(false, false);
         if (testParameters != null) {
             Boolean showLogs = true; //(Boolean) - включить отображение логов SDK. Все логи начинаются с тега 'YooKassa.SDK'
             Boolean googlePayTestEnvironment = false; //(Boolean) - использовать тестовую среду Google Pay
