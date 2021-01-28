@@ -2,7 +2,9 @@
 
 ## Getting started
 
-`$ npm install react-native-yookassa --save`
+`$ npm install @wyndrick/react-native-yookassa --save`
+
+`$ yarn add @wyndrick/react-native-yookassa`
 
 ### Mostly automatic installation
 
@@ -10,7 +12,7 @@
 
 ## Usage
 ```javascript
-import Yookassa from 'react-native-yookassa';
+import Yookassa from '@wyndrick/react-native-yookassa';
 
 // TODO: What to do with the module?
 Yookassa;
