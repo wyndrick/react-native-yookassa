@@ -23,6 +23,7 @@
     "react-native"
   ],
   "author": "wyndrick@gmail.com",
+  "author_name": "wyndrick",
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "peerDependencies": {
