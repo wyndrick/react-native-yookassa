@@ -1,9 +1,7 @@
 import { NativeModules, Platform } from 'react-native';
 let YookassaNative 
 if (Platform.OS !== 'web') {
-  console.log(widget)
   YookassaNative = NativeModules.Yookassa
-  
 } else {
   var shopId
   YookassaNative = {
@@ -95,7 +93,6 @@ class Yookassa {
   static paymentTypes = PaymentType
   static savePaymentMethods = SavePaymentMethod
   static initialize = (shopId, token, clientId = null) => {
-    console.log(YookassaNative)
     YookassaNative.initialize(shopId, token, clientId);
   }
   static tokenization = (title, desc, summ, paymentType, savePaymentMethod, testParameters) => {
