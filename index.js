@@ -8,59 +8,24 @@ if (Platform.OS !== 'web') {
     initialize:(_shopId, token, clientId)=> {
       shopId = _shopId
     },
-    tokenization:(title, desc, summ, paymentType, savePaymentMethod, testParameters) => {
-      const checkout = YooMoneyCheckoutUI(shopId, {
-        language: 'ru',
-        domSelector: 'body',
-        amount: summ
+    tokenization:(title, desc, summ, paymentType, savePaymentMethod, testParameters) => {},
+    openWidget:(confirmationToken, returnUrl, elementId, onSuccess, onFail) => {
+      const checkout = new window.YooMoneyCheckoutWidget({
+        confirmation_token: confirmationToken, //Токен, который перед проведением оплаты нужно получить от ЮKassa
+        return_url: returnUrl, //Ссылка на страницу завершения оплаты
+        error_callback(error) {
+          console.log("Обработка ошибок инициализации", error)
+        }
       });
-
-      checkout.open()
-      try {
-        checkout.on('yc_error', response => {
-          console.log("yc_error", response)
-          /*
-            {
-                status: 'error',
-                error: {
-                    type: 'validation_error',
-                    message: undefined,
-                    status_code: 400,
-                    code: undefined,
-                    params: [
-                        {
-                            code: 'invalid_number',
-                            message: 'Неверный номер карты'
-                        },
-                        {
-                            code: 'invalid_expiry_month',
-                            message: 'Невалидное значение месяца'
-                        }
-                    ]
-                }
-            }
-          */
-        });
-        checkout.on('yc_success', response => {
-          console.log("yc_success", response)
-          checkout.chargeSuccessful();
-          /*
-          {
-              status: 'success',
-              data: {
-                  message: 'Токен для оплаты создан',
-                  status_code: 200,
-                  type: 'payment_token_created',
-                  response: {
-                      paymentToken: 'eyJlbmNyeXB0ZWRNZXNzYWdlIjoiWlc1amNubHdkR1ZrVFdWemMyRm5aUT09IiwiZXBoZW1lcmFsUHVibGljS2V5IjoiWlhCb1pXMWxjbUZzVUhWaWJHbGpTMlY1IiwidGFnIjoiYzJsbmJtRjBkWEpsIn0K'
-                  }
-              }
-          }
-          */
-        });
-      } catch (err) {
-        console.log(err)
-      }
+      checkout.render(elementId)
+      .then((result) => {
+        console.log("payment-form", result)
+        onSuccess(result)
+      })
+      .catch(err => {
+        console.log("payment-form", err)
+        onFail(err)
+      })
     }
   }
 }
@@ -95,6 +60,9 @@ class Yookassa {
   static initialize = (shopId, token, clientId = null) => {
     YookassaNative.initialize(shopId, token, clientId);
   }
+  static openWidget = (confirmationToken, returnUrl, elementId, onSuccess, onFail) => {
+    YookassaNative.openWidget(confirmationToken, returnUrl, onSuccess, onFail);
+  }
   static tokenization = (title, desc, summ, paymentType, savePaymentMethod, testParameters) => {
     console.log("YOOKASSA tokenization start = ")
     return new Promise((resolve, reject) => {
@@ -115,7 +83,6 @@ class Yookassa {
     });
   }
 }
-
 
 
 export default Yookassa;
