@@ -61,7 +61,7 @@ class Yookassa {
     YookassaNative.initialize(shopId, token, clientId);
   }
   static openWidget = (confirmationToken, returnUrl, elementId, onSuccess, onFail) => {
-    YookassaNative.openWidget(confirmationToken, returnUrl, onSuccess, onFail);
+    YookassaNative.openWidget(confirmationToken, returnUrl, elementId, onSuccess, onFail);
   }
   static tokenization = (title, desc, summ, paymentType, savePaymentMethod, testParameters) => {
     console.log("YOOKASSA tokenization start = ")
